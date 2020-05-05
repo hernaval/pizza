@@ -1,20 +1,49 @@
-import React, { memo } from 'react'
+import React, { memo,useState } from 'react'
 import {TouchableOpacity,View,Text,StyleSheet} from "react-native"
 import Background from "../components/Background"
 import TextInput from "../components/TextInput"
 import SignButton from "../components/SignButton";
+import { emailValidator,passwordValidator } from "../core/utils";
 import { theme } from "../core/theme";
 
 const LoginScreen = ({navigation}) =>{
+    const [email, setEmail] = useState({ value: "", error: "" });
+    const [password, setPassword] = useState({ value: "", error: "" });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+const _handleSign = async() =>{
+    console.log("ok salut")
+     if(loading) return ;
+
+    const emailError = emailValidator(email.value)
+    const passwordError = passwordValidator(password.value)
+
+    if (emailError || passwordError) {
+        setEmail({ ...email, error: emailError });
+        setPassword({ ...password, error: passwordError });
+        return; 
+    }
+
+    setLoading(false)
+}
     return(
         <Background>
             <TextInput 
                 label ="Email"
                 returnKeyType = "next"
+                value={email.value}
+                onChangeText={text => setEmail({value : text, error : ""})}
+                error = {!!email.error}
+                errorText = {email.error}
             />
             <TextInput 
                 label ="Password"
                 returnKeyType="done"
+                value={password.value}
+                onChangeText={text => setPassword({value : text, error :""})}
+                error={!!password.error}
+                errorText={password.error} 
                 secureTextEntry
             />
 
@@ -26,7 +55,7 @@ const LoginScreen = ({navigation}) =>{
                 </TouchableOpacity>
             </View>
 
-            <SignButton mode="contained" onPress={()=>{}}>
+            <SignButton  loading={loading} mode="contained" onPress={_handleSign}>
                 Login
             </SignButton>
 
