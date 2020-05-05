@@ -1,6 +1,7 @@
+import {API_URL } from "../core/config"
 export const signUpUser = async ({name,email,password}) =>{
     let response = ""
-     await fetch("https://rn-log.herokuapp.com/users/signup",{
+     await fetch(`${API_URL}/signup`,{
         method : "post",
         headers : {
             'Content-Type' : "application/x-www-form-urlencoded",
@@ -23,7 +24,7 @@ export const signUpUser = async ({name,email,password}) =>{
 
 export const loginUser = async({email, password}) =>{
     let response =""
-     await fetch("https://rn-log.herokuapp.com/users/signin",{
+     await fetch(`${API_URL}/signin`,{
         method : "post",
         headers : {
             'Content-Type' : "application/x-www-form-urlencoded",
