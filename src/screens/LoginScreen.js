@@ -5,6 +5,7 @@ import TextInput from "../components/TextInput"
 import SignButton from "../components/SignButton";
 import { emailValidator,passwordValidator } from "../core/utils";
 import { theme } from "../core/theme";
+import { loginUser } from '../API/auth-api';
 
 const LoginScreen = ({navigation}) =>{
     const [email, setEmail] = useState({ value: "", error: "" });
@@ -25,6 +26,10 @@ const _handleSign = async() =>{
         return; 
     }
 
+    const response =  loginUser({
+        email : email.value,
+        password : password.value
+    })
     setLoading(false)
 }
     return(
