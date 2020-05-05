@@ -4,7 +4,7 @@ import TextInput from "../components/TextInput"
 import SignButton from "../components/SignButton"
 import Background from "../components/Background"
 import { theme } from "../core/theme"
-import { emailValidator,passwordValidator,nameValidator } from "../core/utils";
+import { emailValidator,passwordValidator,userExist,nameValidator } from "../core/utils";
 import { signUpUser } from "../API/auth-api";
 const RegisterScreen = ({navigation}) => {
   const [name, setName] = useState({ value: "", error: "" });
@@ -36,6 +36,17 @@ const RegisterScreen = ({navigation}) => {
       email : email.value,
       password : password.value
     })
+
+     console.log(response) 
+
+     if(response =="user exist") {
+      const emailError = userExist(email.value);
+
+      setEmail({...email, error : emailError})
+    }else{
+      alert("user added")
+      
+    } 
  
     setLoading(false);
     

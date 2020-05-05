@@ -3,7 +3,7 @@ import {TouchableOpacity,View,Text,StyleSheet} from "react-native"
 import Background from "../components/Background"
 import TextInput from "../components/TextInput"
 import SignButton from "../components/SignButton";
-import { emailValidator,passwordValidator } from "../core/utils";
+import { emailValidator,passwordValidator,credValidator } from "../core/utils";
 import { theme } from "../core/theme";
 import { loginUser } from '../API/auth-api';
 
@@ -14,7 +14,7 @@ const LoginScreen = ({navigation}) =>{
     const [error, setError] = useState("");
 
 const _handleSign = async() =>{
-    console.log("ok salut")
+    
      if(loading) return ;
 
     const emailError = emailValidator(email.value)
@@ -26,10 +26,24 @@ const _handleSign = async() =>{
         return; 
     }
 
-    const response =  loginUser({
+    const response =  await loginUser({
         email : email.value,
         password : password.value
     })
+   
+    
+     if(response == "user not found") {
+         
+        const emailError = credValidator(email.value)
+         setEmail({ ...email, error: emailError });
+
+         
+        // setPassword({ ...password, error: passwordError });
+     }
+    if(response == "connected") {
+        navigation.navigate("Dashboard") 
+    } 
+    
     setLoading(false)
 }
     return(
@@ -37,6 +51,7 @@ const _handleSign = async() =>{
             <TextInput 
                 label ="Email"
                 returnKeyType = "next"
+                autoCapitalize="none"
                 value={email.value}
                 onChangeText={text => setEmail({value : text, error : ""})}
                 error = {!!email.error}
@@ -45,6 +60,7 @@ const _handleSign = async() =>{
             <TextInput 
                 label ="Password"
                 returnKeyType="done"
+                autoCapitalize="none"
                 value={password.value}
                 onChangeText={text => setPassword({value : text, error :""})}
                 error={!!password.error}

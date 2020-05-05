@@ -2,7 +2,7 @@ export const emailValidator = email => {
     const re = /\S+@\S+\.\S+/;
   
     if (!email || email.length <= 0) return "Email cannot be empty.";
-    if (!re.test(email)) return "Ooops! We need a valid email address.";
+    if (!re.test(email)) return "need a valid email address.";
   
     return "";
   };
@@ -18,4 +18,17 @@ export const emailValidator = email => {
   
     return "";
   };
+
   
+  
+  export const credValidator = cred =>{
+    //if (!email || email.length <= 0) return "Email cannot be empty.";
+        if(cred) return "Wrong credential .";
+
+  }
+
+ export const userExist = cred =>{
+    //if (!email || email.length <= 0) return "Email cannot be empty.";
+        if(cred) return "User with same mail already exist ";
+
+  }

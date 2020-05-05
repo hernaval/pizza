@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import { View, Text } from 'react-native'
 import Background from "../components/Background"
 const Dashboard = () => {
@@ -9,4 +9,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default memo(Dashboard)

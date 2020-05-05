@@ -1,6 +1,6 @@
-export const signUpUser = ({name,email,password}) =>{
-
-     fetch("https://rn-log.herokuapp.com/users/signup",{
+export const signUpUser = async ({name,email,password}) =>{
+    let response = ""
+     await fetch("https://rn-log.herokuapp.com/users/signup",{
         method : "post",
         headers : {
             'Content-Type' : "application/x-www-form-urlencoded",
@@ -12,11 +12,18 @@ export const signUpUser = ({name,email,password}) =>{
             password : password
         })
     })
-    .then(console.log("ao tsara"))
+   .then(res => res.json())
+   .then(async (data)  => {
+    response =  data.error 
+    
+   })
+
+   return response
 }
 
 export const loginUser = async({email, password}) =>{
-     fetch("https://rn-log.herokuapp.com/users/signin",{
+    let response =""
+     await fetch("https://rn-log.herokuapp.com/users/signin",{
         method : "post",
         headers : {
             'Content-Type' : "application/x-www-form-urlencoded",
@@ -27,5 +34,10 @@ export const loginUser = async({email, password}) =>{
             password : password
         })
     })
-    .then(res => console.log("metye"))
+    .then( res =>  res.json())
+    .then(async (data) =>{
+       response =  !data.error ? await data.success : await data.error
+        
+    })
+    return response
 }
