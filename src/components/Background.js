@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
-import { ImageBackground, KeyboardAvoidingView, StyleSheet } from 'react-native'
+import {  KeyboardAvoidingView, StyleSheet,ImageBackground } from 'react-native'
 
 const Background = ({children}) =>(
     <ImageBackground
-    source={require("../assets/background_dot.png")}
-        resizeMode="repeat"
+    source={require("../../assets/bgPizza7.jpg")}
+        resizeMode="cover"
         style = {styles.background}
     >
         <KeyboardAvoidingView style={styles.container}>

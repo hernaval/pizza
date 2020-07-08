@@ -9,7 +9,8 @@ const TextInput = ({errorText, ...props}) =>(
         <Input  
             style={styles.input} 
             mode="outlined"
-            underlineColor="transparent"
+            theme={{colors :{primary : "#000"}}}
+            style
             {...props}
         />
         {errorText ? <Text style={styles.error}>{errorText}</Text> : null}
@@ -22,7 +23,8 @@ const styles = StyleSheet.create({
       marginVertical: 12
     },
     input: {
-      backgroundColor: theme.colors.surface
+      backgroundColor: theme.colors.surface,
+      
     },
     error: {
       fontSize: 14,

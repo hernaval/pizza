@@ -1,14 +1,16 @@
+import { AsyncStorage } from "react-native";
+
 export const emailValidator = email => {
     const re = /\S+@\S+\.\S+/;
   
-    if (!email || email.length <= 0) return "Email cannot be empty.";
-    if (!re.test(email)) return "need a valid email address.";
+    if (!email || email.length <= 0) return "Email oubligatoire";
+    if (!re.test(email)) return "Renseigner une adresse email valide";
   
     return "";
   };
   
   export const passwordValidator = password => {
-    if (!password || password.length <= 0) return "Password cannot be empty.";
+    if (!password || password.length <= 0) return "Mot de passe obligatoire";
   
     return "";
   };
@@ -32,3 +34,5 @@ export const emailValidator = email => {
         if(cred) return "User with same mail already exist ";
 
   }
+
+

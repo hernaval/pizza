@@ -1,17 +1,28 @@
 {
   "expo": {
-    "name": "HelloWorld",
-    "slug": "TodoApp",
+    "name": "Pizza Reunion",
+    "slug": "PizzaReunion",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
+    "android" : {
+      "package": "com.devops.PizzaReunion",
+      "versionCode" :2,
+      "permissions" : ["ACCESS_FINE_LOCATION","CAMERA","CAMERA_ROLL","READ_EXTERNAL_STORAGE","WRITE_EXTERNAL_STORAGE"],
+      "icon": "./assets/logo.png",
+      "splash": {
+        "image":"./assets/bgPizza7.jpg",
+        "resizeMode":"contain"
+        
+      }
+    },
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "splash": {
-      "image": "./assets/splash.png",
+     
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,6 +33,8 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.devops.PizzaReunion",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     }
   }
